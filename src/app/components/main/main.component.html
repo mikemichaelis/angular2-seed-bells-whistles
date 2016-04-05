@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <div style="float:right">
+                <button (click)="doLogout()" class="nav-link btn btn-danger-outline" href="#">Logout {{userName}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" [style.display]="IsBusy ? 'block' : 'none'">
+    <div class="center">
+        <img alt="" src="images/loader.gif" />
+    </div>
+</div>

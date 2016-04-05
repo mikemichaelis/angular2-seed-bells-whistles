@@ -1,0 +1,15 @@
+{
+  "mode": "DEV",
+
+  "clientId": "rsvtUI",
+  "scopes": "openid profile variety_access raven_access",
+
+  "implicitGrantUrl": "https://elw12dauth01.dow.com/SSO_Dev/connect/authorize?redirect_uri=__callbackUrl__&response_type=id_token%20token&client_id=__clientId__&scope=__scopes__&state=14527175907790.5554039004418658&nonce=xyz",
+  "callbackUrl": "http://localhost:3000/auth/callback",
+
+  "userInfoUrl": "https://elw12dauth01.dow.com/SSO_Dev/connect/userinfo",
+  "userInfoNameField": "sub",
+
+  "logoutUrl": "https://elw12dauth01.dow.com/SSO_Dev/connect/endsession?id_token_hint=__token__&post_logout_redirect_uri=__logoutCallbackUrl__",
+  "logoutCallbackUrl": "http://localhost:3000/login"
+}

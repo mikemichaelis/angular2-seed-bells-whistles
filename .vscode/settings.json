@@ -1,0 +1,18 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    // Migrated from previous "File | Auto Save" setting:
+    "files.autoSave": "afterDelay",
+
+    // When enabled, will trim trailing whitespace when you save a file.
+	"files.trimTrailingWhitespace": true,
+
+    // Configure glob patterns for excluding files and folders.
+	"files.exclude": {
+		"**/.git": true,
+		"**/.DS_Store": true,
+        "**/*.map": true,
+        "src/app/**/*.js": true,
+        "src/app/**/*.css": true,
+        "src/app/**/*.d.ts": true
+	}
+}
