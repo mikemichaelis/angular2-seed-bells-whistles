@@ -36,6 +36,8 @@ module.exports = function() {
     var browsers = ['last 2 version', '> 5%'];
 
     var cfg = {
+        sourcemaps: true,
+
         index: index,
         tsconfig: tsconfig,
 

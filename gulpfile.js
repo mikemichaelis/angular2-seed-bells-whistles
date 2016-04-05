@@ -19,7 +19,7 @@ gulp.task('start', function() {
 });
 
 gulp.task('compile', function(done) {
-    runSequence('clean', 'lint', 'ts', 'styles', 'inject', 'import-fonts', function() {
+    runSequence('clean', 'lint', 'ts', 'sass', 'inject', 'import-fonts', function() {
         done();
     });
 });
@@ -47,16 +47,8 @@ gulp.task('publish', function(done) {
     });
 });
 
-
-
 gulp.task('lint', function(done) {
     runSequence('lint-ts', 'lint-html', 'lint-js', function() {
-        done();
-    });
-});
-
-gulp.task('styles', function(done) {
-    runSequence('build-sass', function() {
         done();
     });
 });
@@ -64,7 +56,7 @@ gulp.task('styles', function(done) {
 gulp.task('inject', ['inject-styles']);
 
 gulp.task('clean', [], function(done) {
-    runSequence('clean-styles', 'clean-build', 'clean-publish', 'clean-map', function() {
+    runSequence('clean-app', 'clean-build', 'clean-publish', function() {
        done();
    });
 });
@@ -116,7 +108,9 @@ gulp.task('ts', function() {
             errorHandler: error
         }))
         .pipe($.if(args.verbose, $.print()))
+        .pipe($.if(config.sourcemaps, $.sourcemaps.init()))
         .pipe($.typescript(tsProject))
+        .pipe($.if(config.sourcemaps, $.sourcemaps.write('.')))
         .pipe(gulp.dest(config.appDir));
 });
 
@@ -167,7 +161,7 @@ gulp.task('watch-sass', function() {
     var src = config.srcDir + '**/*.scss';
     log('Watching ' + src);
 
-    gulp.watch([src], ['styles']);
+    gulp.watch([src], ['sass']);
 });
 
 gulp.task('watch-css', function() {
@@ -183,17 +177,17 @@ gulp.task('watch-css', function() {
 gulp.task('lint-js', function() {
 });
 
-gulp.task('clean-styles', function() {
-    var src = [config.appDir + '**/*.css', config.stylesDir + '**/*.css'];
+gulp.task('clean-app', function() {
+    var src = [
+        config.appDir + '**/*.css',
+        config.stylesDir + '**/*.css',
+        config.appDir + '**/*.map',
+        config.appDir + '**/*.js'
+        ];
     return clean(src);
 });
 
-gulp.task('clean-map', function() {
-    var src = config.appDir + '**/*.map';
-    return clean(src);
-});
-
-gulp.task('build-sass', function() {
+gulp.task('sass', function() {
 
     var src = config.srcDir + '**/*.scss';
 
@@ -205,8 +199,10 @@ gulp.task('build-sass', function() {
             errorHandler: error
         }))
         .pipe($.if(args.verbose, $.print()))
-        .pipe($.sass()) // {sourcemap: true}
+        .pipe($.if(config.sourcemaps, $.sourcemaps.init()))
+        .pipe($.sass())
         .pipe($.autoprefixer({browsers: config.browsers}))
+        .pipe($.if(config.sourcemaps, $.sourcemaps.write('.')))
         .pipe(gulp.dest('./'));
 });
 
@@ -240,7 +236,6 @@ gulp.task('import-fonts', function() {
         .pipe($.flatten())
         .pipe(gulp.dest(config.fontsDir));
 });
-
 
 gulp.task('clean-build', function() {
     var src = config.buildDir + '**/*';
