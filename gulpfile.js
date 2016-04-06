@@ -379,6 +379,14 @@ gulp.task('inject-build', function() {
     var src = config.buildDir + config.index;
     var dest = config.buildDir;
 
+    var base;
+    if (args.prod) {
+        base = config.baseUrlProd;
+    }
+    else {
+        base = config.baseUrlTest;
+    }
+
     log('Configure ' + src + ' for publish');
 
     return gulp
@@ -388,6 +396,7 @@ gulp.task('inject-build', function() {
         }))
         .pipe($.if(args.verbose, $.print()))
         .pipe($.htmlReplace({
+            base: base,
             system: config.systemScript,
             app: config.appScript
         }, {

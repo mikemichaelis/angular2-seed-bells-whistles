@@ -2,7 +2,7 @@ import {Component, OnInit, OnChanges, OnDestroy, SimpleChange} from "angular2/co
 import {Http, Headers, HTTP_PROVIDERS, Response} from "angular2/http";
 import {Router} from "angular2/router";
 
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: "main",

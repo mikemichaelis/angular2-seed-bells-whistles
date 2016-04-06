@@ -25,6 +25,9 @@ module.exports = function() {
         ];
     var appScript = ['<script src="js/main.bundle.js"></script>'];
 
+    var baseUrlTest = '<base href="/">';
+    var baseUrlProd = '<base href="/">';
+
     var systemConfig = 'system.config.js';
     var systemTestConfig = 'system.config.js';
     var systemProdConfig = 'system.config.js';

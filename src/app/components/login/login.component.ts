@@ -1,7 +1,7 @@
 import {Component, OnInit} from "angular2/core";
 import {ROUTER_DIRECTIVES, Router, Location} from "angular2/router";
 
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: "login",

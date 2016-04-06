@@ -19,8 +19,8 @@ import "bootstrap";
 
 import {AppComponent} from "./components/app/app.component";
 
-import {WindowService} from "./shared/services/window.service";
-import {AuthService} from "./shared/services/auth.service";
-import {CookieService} from "./shared/services/cookies.service";
+import {WindowService} from "./services/window.service";
+import {AuthService} from "./services/auth.service";
+import {CookieService} from "./services/cookies.service";
 
 bootstrap(AppComponent, [CookieService, AuthService, WindowService, COMMON_DIRECTIVES, HTTP_PROVIDERS, ROUTER_PROVIDERS]);
