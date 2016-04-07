@@ -6,9 +6,8 @@ import {MainComponent} from "../main/main.component";
 
 @Component({
     selector: "app",
-    moduleId: "app/components/app/",
-    templateUrl: "app.component.html",
-    styleUrls: ["app.component.css"],
+    templateUrl: "app/components/app/app.component.html",
+    styleUrls: ["app/components/app/app.component.css"],
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([

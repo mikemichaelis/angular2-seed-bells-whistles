@@ -6,9 +6,8 @@ import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: "main",
-    moduleId: "app/components/main/",
-    templateUrl: "main.component.html",
-    styleUrls: ["main.component.css"]
+    templateUrl: "app/components/main/main.component.html",
+    styleUrls: ["app/components/main/main.component.css"]
 })
 export class MainComponent implements OnInit, OnChanges, OnDestroy {
 
