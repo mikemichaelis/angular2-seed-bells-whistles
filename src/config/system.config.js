@@ -82,9 +82,6 @@ System.config({
     "npm:async@0.2.10": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:babel-runtime@5.8.38": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
     "npm:brace-expansion@1.1.3": {
       "balanced-match": "npm:balanced-match@0.3.0",
       "concat-map": "npm:concat-map@0.0.1"
