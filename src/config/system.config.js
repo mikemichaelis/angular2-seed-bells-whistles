@@ -10,6 +10,7 @@ System.config({
     "angular2": "npm:angular2@2.0.0-beta.9",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "core-js": "npm:core-js@1.2.6",
+    "css": "github:systemjs/plugin-css@0.1.20",
     "es6-promise": "npm:es6-promise@3.1.2",
     "es6-shim": "npm:es6-shim@0.33.13",
     "font-awesome": "npm:font-awesome@4.5.0",

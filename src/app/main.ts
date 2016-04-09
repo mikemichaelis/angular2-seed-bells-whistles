@@ -17,7 +17,7 @@ import "rxjs/add/operator/map";
 
 import "jquery";
 import "bootstrap";
-// import "bootstrap/css/bootstrap.css!";
+import "bootstrap/css/bootstrap.css!";
 
 import {AppComponent} from "./components/app/app.component";
 
