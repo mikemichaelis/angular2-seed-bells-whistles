@@ -12,7 +12,6 @@
 		"**/.DS_Store": true,
         "**/*.map": true,
         "src/app/**/*.js": true,
-        "src/app/**/*.css": true,
-        "src/app/**/*.d.ts": true
+        "src/app/**/*.css": true
 	}
 }

@@ -79,6 +79,9 @@ module.exports = function() {
         systemScript: systemScript,
         appScript: appScript,
 
+        baseUrlTest: baseUrlTest,
+        baseUrlProd: baseUrlProd,
+
         systemConfig: systemConfig,
         systemTestConfig: systemTestConfig,
         systemProdConfig: systemProdConfig,

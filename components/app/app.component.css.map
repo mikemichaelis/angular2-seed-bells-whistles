@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.component.css"],"names":[],"mappings":"AAAA;EACE,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc,EAAE","file":"components/app/app.component.css","sourcesContent":["a {\n  display: flex; }\n"],"sourceRoot":"/source/"}

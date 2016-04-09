@@ -1,0 +1,1 @@
+{"version":3,"sources":["login.component.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB,EAAE","file":"components/login/login.component.css","sourcesContent":[".login {\n  background: lightgray; }\n"],"sourceRoot":"/source/"}

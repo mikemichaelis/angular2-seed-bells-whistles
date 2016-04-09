@@ -1,28 +1,34 @@
 // http://stackoverflow.com/questions/33332394/angular-2-typescript-cant-find-names
 ///<reference path="../../node_modules/angular2/typings/browser.d.ts"/>
 
-import "zone.js";
 import "reflect-metadata";
 
-import {Component, provide} from "angular2/core";
-import {HTTP_PROVIDERS} from "angular2/http";
-import {ROUTER_DIRECTIVES, RouteConfig, ROUTER_PROVIDERS, RouterOutlet, PathLocationStrategy, HashLocationStrategy, LocationStrategy} from "angular2/router";
-import {COMMON_DIRECTIVES} from "angular2/common";
-import {bootstrap} from "angular2/platform/browser";
+import "rxjs";
 
-import {Subject} from "rxjs/Subject";
-import {Observable} from "rxjs/Observable";
-
-import "rxjs/add/operator/map";
+import "zone.js/dist/zone";
+import "zone.js/dist/long-stack-trace-zone";
 
 import "jquery";
 import "bootstrap";
 import "bootstrap/css/bootstrap.css!";
+// import "ng2-material";
 
-import {AppComponent} from "./components/app/app.component";
+import {bootstrap} from "angular2/platform/browser";
+import {COMMON_DIRECTIVES} from "angular2/common";
+import {HTTP_PROVIDERS} from "angular2/http";
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
 
 import {WindowService} from "./services/window.service";
 import {AuthService} from "./services/auth.service";
 import {CookieService} from "./services/cookies.service";
 
-bootstrap(AppComponent, [CookieService, AuthService, WindowService, COMMON_DIRECTIVES, HTTP_PROVIDERS, ROUTER_PROVIDERS]);
+import {AppComponent} from "./components/app/app.component";
+
+bootstrap(AppComponent, [
+    COMMON_DIRECTIVES,
+    HTTP_PROVIDERS,
+    ROUTER_PROVIDERS,
+    CookieService,
+    AuthService,
+    WindowService
+]);

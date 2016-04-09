@@ -189,12 +189,12 @@ gulp.task('clean-app', function() {
 
 gulp.task('sass', function() {
 
-    var src = config.srcDir + '**/*.scss';
+    var src = [ config.stylesDir + '**/*.scss', config.appDir + '**/*.scss'];
 
     log('Building ' + src + ' --> *.css');
 
     return gulp
-        .src([src], {base: './'})
+        .src(src, {base: './'})
         .pipe($.plumber({
             errorHandler: error
         }))
@@ -204,6 +204,10 @@ gulp.task('sass', function() {
         .pipe($.autoprefixer({browsers: config.browsers}))
         .pipe($.if(config.sourcemaps, $.sourcemaps.write('.')))
         .pipe(gulp.dest('./'));
+});
+
+gulp.task('build-sass-app', function() {
+
 });
 
 gulp.task('inject-styles', function() {
