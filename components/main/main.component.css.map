@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.component.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB,EAAE","file":"components/main/main.component.css","sourcesContent":[".main {\n  background: white; }\n"],"sourceRoot":"/source/"}

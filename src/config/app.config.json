@@ -11,5 +11,10 @@
   "userInfoNameField": "sub",
 
   "logoutUrl": "https://elw12dauth01.dow.com/SSO_Dev/connect/endsession?id_token_hint=__token__&post_logout_redirect_uri=__logoutCallbackUrl__",
-  "logoutCallbackUrl": "http://localhost:3000/login"
+  "logoutCallbackUrl": "http://localhost:3000/login",
+
+  "varietyApiUrl": "http://elw2k8itda02.dow.com/Variety_API_Test/",
+
+  "sourceSystem": 96,
+  "documentId": 386316
 }

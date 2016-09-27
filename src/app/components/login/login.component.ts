@@ -1,5 +1,5 @@
-import {Component, OnInit} from "angular2/core";
-import {ROUTER_DIRECTIVES, Router, Location} from "angular2/router";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import {AuthService} from "../../services/auth.service";
 
@@ -13,15 +13,15 @@ export class LoginComponent implements OnInit {
 
     private sub: any = null;
 
-    constructor(private _authService: AuthService, private _location: Location, private _router: Router) {
+    constructor(private _authService: AuthService, private _router: Router) {
 
     }
 
     ngOnInit() {
         this.sub = this._authService.subscribe((val) => {
             if (val.success && val.authenticated) {
-                this._location.replaceState("/login");
-                this._router.navigate(["Main"]);
+                // this._location.replaceState("/login");
+                this._router.navigate(["main"]);
             };
         });
     }

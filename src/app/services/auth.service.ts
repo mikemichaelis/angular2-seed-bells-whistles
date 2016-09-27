@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter} from "angular2/core";
-import {Http, Headers} from "angular2/http";
+import {Injectable, EventEmitter} from "@angular/core";
+import {Http, Headers} from "@angular/http";
 
 import {WindowService} from "./window.service";
 
@@ -11,8 +11,12 @@ export class AuthService {
     private oAuthUserNameField: string;
     private logoutUrl: string;
     private authenticated: boolean = false;
-    private token: string;
+    private token_type: string;
+    private id_token: string;
+    private access_token: string;
     private expires: any = 0;
+    private state: string;
+    private session_state: string;
     private userInfo: any = {};
     private windowHandle: any = null;
     private intervalId: any = null;
@@ -66,9 +70,15 @@ export class AuthService {
                         clearInterval(this.intervalId);
                         let parsed = this.parse(href.substr(this.oAuthCallbackUrl.length + 1));
                         let expiresSeconds = Number(parsed.expires_in) || 1800;
+                        this.token_type = parsed.token_type;
+                        this.id_token = parsed.id_token;
+                        this.access_token = parsed.access_token;
 
-                        this.token = parsed.access_token;
-                        if (this.token) {
+                        // TODO verify returned state and session_state are correct
+                        this.state = parsed.state;
+                        this.session_state = parsed.session_state;
+
+                        if (this.id_token) {
                             this.authenticated = true;
                         }
 
@@ -84,7 +94,7 @@ export class AuthService {
                             .map(res => res.json())
                             .subscribe((config: any) => {
                                 this.logoutUrl = config.logoutUrl
-                                    .replace("__token__", this.getSession().token)
+                                    .replace("__token__", this.getSession().id_token)
                                     .replace("__logoutCallbackUrl__", config.logoutCallbackUrl);
                             });
                     }
@@ -98,7 +108,7 @@ export class AuthService {
     }
 
     public getSession() {
-        return {authenticated: this.authenticated, token: this.token, expires: this.expires};
+        return {authenticated: this.authenticated, id_token: this.id_token, access_token: this.access_token, expires: this.expires};
     }
 
     public getUserInfo() {
@@ -119,15 +129,16 @@ export class AuthService {
         this.authenticated = false;
         this.expiresTimerId = null;
         this.expires = 0;
-        this.token = null;
+        this.id_token = null;
+        this.access_token = null;
         this.emitAuthStatus(true);
         console.log("Session has been cleared");
     }
 
     private fetchUserInfo() {
-        if (this.token != null) {
+        if (this.id_token != null) {
             let headers = new Headers();
-            headers.append("Authorization", `Bearer ${this.token}`);
+            headers.append("Authorization", `Bearer ${this.access_token}`);
             this.http.get(this.oAuthUserUrl, {headers: headers})
                 .map(res => res.json())
                 .subscribe(info => {
@@ -187,7 +198,13 @@ export class AuthService {
     };
 
     private emitAuthStatus(success: boolean) {
-        this.locationWatcher.emit({success: success, authenticated: this.authenticated, token: this.token, expires: this.expires});
+
+        let authStatus: any = this.getSession();
+        authStatus.success = success;
+
+        // this.locationWatcher.emit({success: success, authenticated: this.authenticated, id_token: this.id_token, access_token: this.access_token, expires: this.expires});
+
+        this.locationWatcher.emit(authStatus);
     }
 }
 

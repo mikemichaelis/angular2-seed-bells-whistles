@@ -35,7 +35,7 @@ System.config({
     "require": "npm:require@2.4.20",
     "rxjs": "npm:rxjs@5.0.0-beta.12",
     "traceur": "npm:traceur@0.0.93",
-    "typescript": "npm:typescript@2.0.3",
+    "typescript": "npm:typescript@1.8.10",
     "zone.js": "npm:zone.js@0.6.23",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -490,8 +490,7 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.2",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
-    "npm:typescript@2.0.3": {
-      "crypto": "github:jspm/nodelibs-crypto@0.1.0",
+    "npm:typescript@1.8.10": {
       "os": "github:jspm/nodelibs-os@0.1.0"
     },
     "npm:uglify-js@2.3.0": {

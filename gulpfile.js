@@ -26,14 +26,14 @@ gulp.task('compile', function(done) {
 
 gulp.task('watch', ['watch-html', 'watch-ts', 'watch-sass']);
 
-gulp.task('build',  function(done) {
+gulp.task('build', function(done) {
     runSequence('compile', 'copy-build', function() {
         done();
     });
 });
 
 gulp.task('copy-build', function(done) {
-    runSequence('clean-build', ['bundle-jspm', 'copy-system', 'copy-html', 'copy-css', 'copy-styles', 'copy-fonts', 'copy-images', 'copy-config', 'copy-root'], function(){
+    runSequence('clean-build', ['bundle-jspm', 'copy-system', 'copy-html', 'copy-css', 'copy-styles', 'copy-fonts', 'copy-images', 'copy-config', 'copy-root'], function() {
         done();
     });
 });
@@ -42,7 +42,8 @@ gulp.task('publish', function(done) {
 
     if (!checkPublishArgs()) { return; }
 
-    runSequence('build', 'inject-build', 'copy-publish', 'config-publish', function() {
+    // 'build',
+    runSequence( 'inject-build', 'copy-publish', 'config-publish', function() {
         done();
     });
 });
@@ -57,8 +58,8 @@ gulp.task('inject', ['inject-styles']);
 
 gulp.task('clean', [], function(done) {
     runSequence('clean-app', 'clean-build', 'clean-publish', function() {
-       done();
-   });
+        done();
+    });
 });
 
 gulp.task('serve-dev', function() {
@@ -74,7 +75,7 @@ gulp.task('serve-dev', function() {
             ignored: 'jspm_packages'
         },
         server: {
-            port:3000,
+            port: 3000,
             baseDir: './src',
             index: config.index,
             middleware: [
@@ -109,7 +110,8 @@ gulp.task('ts', function() {
         }))
         .pipe($.if(args.verbose, $.print()))
         .pipe($.if(config.sourcemaps, $.sourcemaps.init()))
-        .pipe($.typescript(tsProject))
+        // .pipe($.typescript(tsProject))
+        .pipe(tsProject())
         .pipe($.if(config.sourcemaps, $.sourcemaps.write('.')))
         .pipe(gulp.dest(config.appDir));
 });
@@ -183,18 +185,18 @@ gulp.task('clean-app', function() {
         config.stylesDir + '**/*.css',
         config.appDir + '**/*.map',
         config.appDir + '**/*.js'
-        ];
+    ];
     return clean(src);
 });
 
 gulp.task('sass', function() {
 
-    var src = [ config.stylesDir + '**/*.scss', config.appDir + '**/*.scss'];
+    var src = config.srcDir + '**/*.scss';
 
     log('Building ' + src + ' --> *.css');
 
     return gulp
-        .src(src, {base: './'})
+        .src([src], {base: './'})
         .pipe($.plumber({
             errorHandler: error
         }))
@@ -204,10 +206,6 @@ gulp.task('sass', function() {
         .pipe($.autoprefixer({browsers: config.browsers}))
         .pipe($.if(config.sourcemaps, $.sourcemaps.write('.')))
         .pipe(gulp.dest('./'));
-});
-
-gulp.task('build-sass-app', function() {
-
 });
 
 gulp.task('inject-styles', function() {
@@ -404,10 +402,10 @@ gulp.task('inject-build', function() {
             system: config.systemScript,
             app: config.appScript
         }, {
-            keepUnassigned: true,
-            keepBlockTags: true,
-            resolvePaths: false
-        }))
+                keepUnassigned: true,
+                keepBlockTags: true,
+                resolvePaths: false
+            }))
         .pipe(gulp.dest(dest));
 });
 
@@ -417,7 +415,7 @@ gulp.task('serve-build', function() {
     var cfg = {
         injectChanges: false,
         server: {
-            port:3000,
+            port: 3000,
             baseDir: './build',
             index: config.index,
             middleware: [
@@ -445,7 +443,7 @@ gulp.task('serve-test', function() {
     var cfg = {
         injectChanges: false,
         server: {
-            port:3000,
+            port: 3000,
             baseDir: './publish/test',
             index: config.index,
             middleware: [
@@ -473,7 +471,7 @@ gulp.task('serve-prod', function() {
     var cfg = {
         injectChanges: false,
         server: {
-            port:3000,
+            port: 3000,
             baseDir: './publish/prod',
             index: config.index,
             middleware: [
@@ -530,7 +528,7 @@ gulp.task('clean-publish-config', function() {
     return clean(src);
 });
 
-gulp.task('config-publish', ['config-publish-system','config-publish-app']);
+gulp.task('config-publish', ['config-publish-system', 'config-publish-app']);
 
 gulp.task('config-publish-system', function() {
 
@@ -598,7 +596,7 @@ gulp.task('config-publish-app', function() {
 
 ////////////////////////////////////////////////////////////////////////////////
 function log(msg) {
-    if (typeof(msg) === 'object') {
+    if (typeof (msg) === 'object') {
         for (var item in msg) {
             if (msg.hasOwnProperty(item)) {
                 $.util.log($.util.colors.blue(msg[item]));
@@ -621,7 +619,7 @@ function isFunction(functionToCheck) {
 
 function htmllintReporter(filepath, issues) {
     if (issues.length > 0) {
-        issues.forEach(function (issue) {
+        issues.forEach(function(issue) {
             $.util.log(
                 $.util.colors.cyan('[gulp-htmllint] ') +
                 $.util.colors.white(filepath + ' [' + issue.line + ',' + issue.column + ']: ') +
@@ -645,4 +643,3 @@ function clean(src) {
     log('Cleaning ' + src);
     return del(src);
 }
-

@@ -25,8 +25,8 @@ module.exports = function() {
         ];
     var appScript = ['<script src="js/main.bundle.js"></script>'];
 
-    var baseUrlTest = '<base href="/">';
-    var baseUrlProd = '<base href="/">';
+    var baseUrlProd = '<base href="/rsvt/">';
+    var baseUrlTest = '<base href="/rsvt/">';
 
     var systemConfig = 'system.config.js';
     var systemTestConfig = 'system.config.js';
@@ -79,9 +79,6 @@ module.exports = function() {
         systemScript: systemScript,
         appScript: appScript,
 
-        baseUrlTest: baseUrlTest,
-        baseUrlProd: baseUrlProd,
-
         systemConfig: systemConfig,
         systemTestConfig: systemTestConfig,
         systemProdConfig: systemProdConfig,
@@ -89,6 +86,9 @@ module.exports = function() {
         appConfig: appConfig,
         appTestConfig: appTestConfig,
         appProdConfig: appProdConfig,
+
+        baseUrlTest: baseUrlTest,
+        baseUrlProd: baseUrlProd,
 
         browsers: browsers
     };
