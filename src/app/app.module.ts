@@ -19,19 +19,14 @@ import { HttpModule } from "@angular/http";
 import { routing } from "./app.routing";
 
 import { AppComponent } from "./components/app/app.component";
-import { LoginComponent } from "./components/login/login.component";
 import { MainComponent } from "./components/main/main.component";
 
-import { AuthService } from "./services/auth.service";
-import { VarietyService } from "./services/variety.service";
-// import { RavenService } from "./services/raven.service";
-import { WindowService } from "./services/window.service";
-import { CookieService } from "./services/cookies.service";
+import { Auth } from "./services/auth.service";
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, HttpModule, routing ],
-  declarations: [ AppComponent, LoginComponent, MainComponent ],
-  providers: [ VarietyService, WindowService, AuthService, CookieService ],
+  declarations: [ AppComponent, MainComponent ],
+  providers: [ Auth ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

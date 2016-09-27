@@ -1,25 +1,25 @@
 {
   "name": "rsvt",
   "version": "1.0.0",
-  "description": "Raven Seed Variety Transfer",
+  "description": "Angular 2 Seed Bells & Whistles",
   "main": "index.js",
   "scripts": {
     "start": "concurrent \"npm run tsc:w\" \"npm run lite\"",
     "tsc": "tsc",
-    "tsc:w": "tsc -w",
+    "tsc:w": "tsc -w -p tsconfig.json",
     "lite": "lite-server",
     "typings": "typings",
     "postinstall": "typings install"
   },
   "author": "Mike Michaelis",
   "license": "ISC",
-  "homepage": "https://github.com/mikemichaelis/rsvt#readme",
+  "homepage": "https://github.com/mikemichaelis/angular2-seed-bells-whistles#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikemichaelis/rsvt.git"
+    "url": "git+https://github.com/mikemichaelis/angular2-seed-bells-whistles.git"
   },
   "bugs": {
-    "url": "https://github.com/mikemichaelis/rsvt/issues"
+    "url": "https://github.com/mikemichaelis/angular2-seed-bells-whistles/issues"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
@@ -31,6 +31,8 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
+    "angular2-jwt": "^0.1.23",
+    "auth0-lock": "^10.3.0",
     "bootstrap": "^3.3.6",
     "core-js": "^2.4.1",
     "crypto": "0.0.3",
@@ -75,7 +77,7 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
-    "jspm": "^0.16.32",
+    "jspm": "^0.16.45",
     "lodash": "^4.8.1",
     "path": "^0.12.7",
     "run-sequence": "^1.1.5",
@@ -102,6 +104,8 @@
       "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@^2.0.1",
       "@angular/router": "npm:@angular/router@^3.0.1",
       "@angular/upgrade": "npm:@angular/upgrade@^2.0.1",
+      "angular2-jwt": "npm:angular2-jwt@^0.1.23",
+      "auth0-lock": "npm:auth0-lock@^10.3.0",
       "bootstrap": "github:twbs/bootstrap@^3.3.6",
       "crypto": "github:jspm/nodelibs-crypto@^0.1.0",
       "es6-promise": "npm:es6-promise@^3.0.2",

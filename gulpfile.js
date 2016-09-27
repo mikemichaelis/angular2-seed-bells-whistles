@@ -15,7 +15,8 @@ gulp.task('default', ['help']);
 gulp.task('help', $.taskListing);
 
 gulp.task('start', function() {
-    runSequence('compile', ['watch', 'serve-dev']);
+    // 'compile', ['watch', 'serve-dev']
+    runSequence('serve-dev');
 });
 
 gulp.task('compile', function(done) {
